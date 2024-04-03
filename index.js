@@ -28,7 +28,7 @@ app.use('/sfu/:room', express.static(path.join(__dirname, 'public')))
 // http.listen(3000, '192.168.0.61', () => {
 //     console.log("the app is run in port 3000!");
 // });
-https.listen(8443, '192.168.0.106', () => {
+https.listen(8443, '192.168.0.61', () => {
     console.log("the app is run in port 8443!");
 });
 
@@ -119,8 +119,8 @@ connections.on('connection', async socket => {
 
     // remove socket from room
     rooms[roomName] = {
-      router: rooms[roomName].router,
-      peers: rooms[roomName].peers.filter(socketId => socketId !== socket.id)
+      router: rooms[roomName]?.router,
+      peers: rooms[roomName]?.peers?.filter(socketId => socketId !== socket.id)
     }
   })
 
@@ -232,7 +232,7 @@ connections.on('connection', async socket => {
     peers[socket.id] = {
       ...peers[socket.id],
       transports: [
-        ...peers[socket.id].transports,
+        ...peers[socket.id]?.transports,
         transport.id,
       ]
     }
@@ -422,7 +422,7 @@ const createWebRtcTransport = async (router) => {
       const webRtcTransport_options = {
         listenIps: [
           {
-            ip: '192.168.0.106',
+            ip: '192.168.0.61',
           }
         ],
         enableUdp: true,

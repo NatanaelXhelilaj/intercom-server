@@ -1,60 +1,21 @@
 <html>
   <head>
-    <style>
-        button {
-            margin: 2;
-        }
-        tr {
-            vertical-align: top;
-        }
-        video {
-            width: 360px;
-            background-color: black;
-            padding: 10;
-            margin: 1px 1px;
-        }
-        .mainTable {
-            width: 100%;
-        }
-        .localColumn {
-            width: 246px;
-        }
-        .remoteColumn {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        #localVideo {
-            width: 240;
-        }
-        .remoteVideo {
-            float: left;
-        }
-
-        .videoWrap {
-            margin: 3;
-            /* padding: 5; */
-            /* background-color: papayawhip; */
-            display: flex;
-            justify-content: center;
-        }
-
-        @media only screen and (max-width: 1060px) {
-            .video {
-                width: 300px;
-            }
-        }
-
-        @media only screen and (max-width: 940px) {
-            .video {
-                width: 240px;
-            }
-        }
-    </style>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <style>
+      </style>
   </head>
   <body>
-    <body>
-        <div id="video">
+    <body class="bg-slate-900">
+        <div id="sidenav" class="sidenav fixed top-0 left-0 h-[100vh] w-[100vw] bg-indigo-800 duration-500 p-8 flex justify-center items-center">
+            <ul class="w-full h-min">
+                <li class="w-[100%] mt-6"><a class="bg-slate-900 text-white font-bold py-8 px-8 rounded w-[100%] block text-5xl" href="/sfu/video_prod">Video Prod</a></li>
+                <li class="w-[100%] mt-6"><a class="bg-slate-900 text-white font-bold py-8 px-8 rounded w-[100%] block text-5xl" href="/sfu/tech_team">Tech Team</a></li>
+                <li class="w-[100%] mt-6"><a class="bg-slate-900 text-white font-bold py-8 px-8 rounded w-[100%] block text-5xl" href="/sfu/lights">Lights</a></li>
+                <li class="w-[100%] mt-6"><a class="bg-slate-900 text-white font-bold py-8 px-8 rounded w-[100%] block text-5xl" href="/sfu/all">All</a></li>
+            </ul>
+        </div>
+
+        <div id="video" class="w-0 h-0">
             <table class="mainTable">
                 <tbody>
                     <tr>
@@ -77,9 +38,31 @@
                 </tbody>
             </table>
         </div>
-
-        <button onclick="reselectDevice()">Refresh</button>
     </body>
+    <script>
+        console.log(document.URL.split('/'))
+        switch (document.URL.split('/')[4]) {
+            case 'video_prod':
+                document.getElementsByTagName('a')[0].classList.remove('bg-slate-900');
+                document.getElementsByTagName('a')[0].classList.add('bg-blue-700');
+                break;
+            case 'tech_team':
+                document.getElementsByTagName('a')[1].classList.remove('bg-slate-900');
+                document.getElementsByTagName('a')[1].classList.add('bg-blue-700');
+                break;
+            case 'lights':
+                document.getElementsByTagName('a')[2].classList.remove('bg-slate-900');
+                document.getElementsByTagName('a')[2].classList.add('bg-blue-700');
+                break;
+            case 'all':
+                document.getElementsByTagName('a')[3].classList.remove('bg-slate-900');
+                document.getElementsByTagName('a')[3].classList.add('bg-blue-700');
+                break;
+        
+            default:
+                break;
+        }
+    </script>
   </body>
   <footer>
       <script src="bundle.js"></script>

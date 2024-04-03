@@ -15005,10 +15005,6 @@ let params = {
 let audioParams;
 let consumingTransports = [];
 
-function reselectDevice() {
-    audioParams = { track: stream.getAudioTracks()[0], ...audioParams };
-}
-
 const streamSuccess = (stream) => {
   localVideo.srcObject = stream
 
@@ -18001,3 +17997,13 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}]},{},[75]);
+
+function openMenu(){
+    const sidenav = document.getElementById('sidenav');
+
+    if (sidenav.classList.contains('hide-menu')) {
+        sidenav.classList.remove('hide-menu');
+    } else {
+        sidenav.classList.add('hide-menu');
+    }
+}
