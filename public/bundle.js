@@ -15010,7 +15010,7 @@ const streamSuccess = (stream) => {
 
   audioParams = { track: stream.getAudioTracks()[0], ...audioParams };
 
-  joinRoom()
+  joinRoom();
 }
 
 const joinRoom = () => {
@@ -15133,7 +15133,6 @@ const connectSendTransport = async () => {
   // this action will trigger the 'connect' and 'produce' events above
   
   audioProducer = await producerTransport.produce(audioParams);
-  videoProducer = await producerTransport.produce(videoParams);
 
   audioProducer.on('trackended', () => {
     console.log('audio track ended')
@@ -15145,18 +15144,6 @@ const connectSendTransport = async () => {
     console.log('audio transport ended')
 
     // close audio track
-  })
-  
-  videoProducer.on('trackended', () => {
-    console.log('video track ended')
-
-    // close video track
-  })
-
-  videoProducer.on('transportclose', () => {
-    console.log('video transport ended')
-
-    // close video track
   })
 }
 
