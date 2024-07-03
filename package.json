@@ -18,12 +18,15 @@
   },
   "homepage": "https://github.com/NatanaelXhelilaj/intercom-server#readme",
   "dependencies": {
+    "bonjour": "^3.5.0",
+    "crypto": "^1.0.1",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2",
     "fs": "^0.0.1-security",
     "https": "^1.0.0",
     "mediasoup": "^3.13.24",
+    "node-machine-id": "^1.1.12",
     "nodemon": "^3.1.0",
     "simple-peer": "^9.11.1",
     "socket.io": "^4.7.5"

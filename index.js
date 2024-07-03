@@ -5,7 +5,14 @@ const http = require("http").Server(app);
 const mediasoup = require('mediasoup');
 const path = require("path");
 var fs = require('fs');
+var nodeMachineId = require('node-machine-id');
 const { Console } = require("console");
+const bonjour = require('bonjour')();
+var crypto = require('crypto');
+
+const keys = require('./keys.json');
+
+const organizationId = 2;
 
 // This line is from the Node.js HTTPS documentation.
 var options = {
@@ -16,21 +23,11 @@ var options = {
 const https = require('https').Server(options, app);
 const io = require("socket.io")(https);
 
-app.get('*', (req, res, next) => {
-  const path = '/sfu/'
 
-  if (req.path.indexOf(path) == 0 && req.path.length > path.length) return next()
-
-  res.send(`You need to specify a room name in the path e.g. 'https://127.0.0.1/sfu/room'`)
-})
-
-app.use('/sfu/:room', express.static(path.join(__dirname, 'public')))
-
-// http.listen(3000, '192.168.0.61', () => {
-//     console.log("the app is run in port 3000!");
-// });
-https.listen(8443, '192.168.0.61', () => {
+https.listen(8443, '192.168.0.103', () => {
     console.log("the app is run in port 8443!");
+
+    bonjour.publish({ name: 'node-server', type: 'http', port: 8443 });
 });
 
 try {
@@ -442,7 +439,7 @@ try {
         const webRtcTransport_options = {
           listenIps: [
             {
-              ip: "192.168.0.61",
+              ip: "192.168.1.8",
             },
           ],
           enableUdp: true,
